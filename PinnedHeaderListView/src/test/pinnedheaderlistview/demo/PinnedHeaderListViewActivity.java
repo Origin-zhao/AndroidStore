@@ -9,102 +9,104 @@ import android.view.View;
 
 public class PinnedHeaderListViewActivity extends Activity {
 
-    // ===========================================================
-    // Methods for/from SuperClass/Interfaces
-    // ===========================================================
+	// ===========================================================
+	// Methods for/from SuperClass/Interfaces
+	// ===========================================================
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        
-        PinnedHeaderListView listView = (PinnedHeaderListView) findViewById(R.id.listview);
-        
-        List<ItemEntity> data = createTestData();
-        
-        // * ´´½¨ĞÂµÄHeaderView£¬¼´ÖÃ¶¥µÄHeaderView
-        View HeaderView = getLayoutInflater().inflate(R.layout.listview_item_header, listView, false);
-        listView.setPinnedHeader(HeaderView);
-        
-        CustomAdapter customAdapter = new CustomAdapter(getApplication(), data);
-        listView.setAdapter(customAdapter);
-        
-        listView.setOnScrollListener(customAdapter);
-    }
-    
-    // ===========================================================
-    // Methods
-    // ===========================================================
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
 
-    private List<ItemEntity> createTestData() {
-        
-        List<ItemEntity> data = new ArrayList<ItemEntity>();
-        
-        ItemEntity itemEntity1 = new ItemEntity("Â·ÈË¼×", "ÂíÈıÁ¢");
-        ItemEntity itemEntity2 = new ItemEntity("Â·ÈË¼×", "ÕÔ±¾É½");
-        ItemEntity itemEntity3 = new ItemEntity("Â·ÈË¼×", "¹ùµÂ¸Ù");
-        ItemEntity itemEntity4 = new ItemEntity("Â·ÈË¼×", "ÖÜÁ¢²¨");
-        ItemEntity itemEntity5 = new ItemEntity("ÊÂ¼şÒÒ", "**Ì°ÎÛ");
-        ItemEntity itemEntity6 = new ItemEntity("ÊÂ¼şÒÒ", "**ÕÕÃÅ");
-        ItemEntity itemEntity7 = new ItemEntity("Êé¼®±û", "10ÌìÑ§»á***");
-        ItemEntity itemEntity8 = new ItemEntity("Êé¼®±û", "**´óÈ«");
-        ItemEntity itemEntity9 = new ItemEntity("Êé¼®±û", "7Ìì¾«Í¨**");
-        ItemEntity itemEntity10 = new ItemEntity("Êé¼®±û", "**ÃØ¼®");
-        ItemEntity itemEntity11 = new ItemEntity("Êé¼®±û", "**±¦µä");
-        ItemEntity itemEntity12 = new ItemEntity("µØ·½¶¡", "ºÓÄÏ");
-        ItemEntity itemEntity13 = new ItemEntity("µØ·½¶¡", "Ìì½ò");
-        ItemEntity itemEntity14 = new ItemEntity("µØ·½¶¡", "±±¾©");
-        ItemEntity itemEntity15 = new ItemEntity("µØ·½¶¡", "ÉÏº£");
-        ItemEntity itemEntity16 = new ItemEntity("µØ·½¶¡", "¹ãÖİ");
-        ItemEntity itemEntity17 = new ItemEntity("µØ·½¶¡", "ºş±±");
-        ItemEntity itemEntity18 = new ItemEntity("µØ·½¶¡", "ÖØÇì");
-        ItemEntity itemEntity19 = new ItemEntity("µØ·½¶¡", "É½¶«");
-        ItemEntity itemEntity20 = new ItemEntity("µØ·½¶¡", "ÉÂÎ÷");
-        
-        data.add(itemEntity1);
-        data.add(itemEntity2);
-        data.add(itemEntity3);
-        data.add(itemEntity4);
-        data.add(itemEntity5);
-        data.add(itemEntity6);
-        data.add(itemEntity7);
-        data.add(itemEntity8);
-        data.add(itemEntity9);
-        data.add(itemEntity10);
-        data.add(itemEntity11);
-        data.add(itemEntity12);
-        data.add(itemEntity13);
-        data.add(itemEntity14);
-        data.add(itemEntity15);
-        data.add(itemEntity16);
-        data.add(itemEntity17);
-        data.add(itemEntity18);
-        data.add(itemEntity19);
-        data.add(itemEntity20);
-        
-        return data;
-        
-    }
-    
-    // ===========================================================
-    // Inner and Anonymous Classes
-    // ===========================================================
-	
+		PinnedHeaderListView listView = (PinnedHeaderListView) findViewById(R.id.listview);
+
+		List<ItemEntity> data = createTestData();
+
+		// * åˆ›å»ºæ–°çš„HeaderViewï¼Œå³ç½®é¡¶çš„HeaderView
+		View HeaderView = getLayoutInflater().inflate(
+				R.layout.listview_item_header, listView, false);
+		listView.setPinnedHeader(HeaderView);
+
+		CustomAdapter customAdapter = new CustomAdapter(getApplication(), data);
+		listView.setAdapter(customAdapter);
+
+		listView.setOnScrollListener(customAdapter);
+	}
+
+	// ===========================================================
+	// Methods
+	// ===========================================================
+
+	private List<ItemEntity> createTestData() {
+
+		List<ItemEntity> data = new ArrayList<ItemEntity>();
+
+		ItemEntity itemEntity1 = new ItemEntity("è·¯äººç”²", "é©¬ä¸‰ç«‹");
+		ItemEntity itemEntity2 = new ItemEntity("è·¯äººç”²", "èµµæœ¬å±±");
+		ItemEntity itemEntity3 = new ItemEntity("è·¯äººç”²", "éƒ­å¾·çº²");
+		ItemEntity itemEntity4 = new ItemEntity("è·¯äººç”²", "å‘¨ç«‹æ³¢");
+		ItemEntity itemEntity5 = new ItemEntity("äº‹ä»¶ä¹™", "**è´ªæ±¡");
+		ItemEntity itemEntity6 = new ItemEntity("äº‹ä»¶ä¹™", "**ç…§é—¨");
+		ItemEntity itemEntity7 = new ItemEntity("ä¹¦ç±ä¸™", "10å¤©å­¦ä¼š***");
+		ItemEntity itemEntity8 = new ItemEntity("ä¹¦ç±ä¸™", "**å¤§å…¨");
+		ItemEntity itemEntity9 = new ItemEntity("ä¹¦ç±ä¸™", "7å¤©ç²¾é€š**");
+		ItemEntity itemEntity10 = new ItemEntity("ä¹¦ç±ä¸™", "**ç§˜ç±");
+		ItemEntity itemEntity11 = new ItemEntity("ä¹¦ç±ä¸™", "**å®å…¸");
+		ItemEntity itemEntity12 = new ItemEntity("åœ°æ–¹ä¸", "æ²³å—");
+		ItemEntity itemEntity13 = new ItemEntity("åœ°æ–¹ä¸", "å¤©æ´¥");
+		ItemEntity itemEntity14 = new ItemEntity("åœ°æ–¹ä¸", "åŒ—äº¬");
+		ItemEntity itemEntity15 = new ItemEntity("åœ°æ–¹ä¸", "ä¸Šæµ·");
+		ItemEntity itemEntity16 = new ItemEntity("åœ°æ–¹ä¸", "å¹¿å·");
+		ItemEntity itemEntity17 = new ItemEntity("åœ°æ–¹ä¸", "æ¹–åŒ—");
+		ItemEntity itemEntity18 = new ItemEntity("åœ°æ–¹ä¸", "é‡åº†");
+		ItemEntity itemEntity19 = new ItemEntity("åœ°æ–¹ä¸", "å±±ä¸œ");
+		ItemEntity itemEntity20 = new ItemEntity("åœ°æ–¹ä¸", "é™•è¥¿");
+
+		data.add(itemEntity1);
+		data.add(itemEntity2);
+		data.add(itemEntity3);
+		data.add(itemEntity4);
+		data.add(itemEntity5);
+		data.add(itemEntity6);
+		data.add(itemEntity7);
+		data.add(itemEntity8);
+		data.add(itemEntity9);
+		data.add(itemEntity10);
+		data.add(itemEntity11);
+		data.add(itemEntity12);
+		data.add(itemEntity13);
+		data.add(itemEntity14);
+		data.add(itemEntity15);
+		data.add(itemEntity16);
+		data.add(itemEntity17);
+		data.add(itemEntity18);
+		data.add(itemEntity19);
+		data.add(itemEntity20);
+
+		return data;
+
+	}
+
+	// ===========================================================
+	// Inner and Anonymous Classes
+	// ===========================================================
+
 	class ItemEntity {
 		private String mTitle;
 		private String mContent;
-		
+
 		public ItemEntity(String pTitle, String pContent) {
 			mTitle = pTitle;
 			mContent = pContent;
 		}
-		
+
 		public String getTitle() {
 			return mTitle;
 		}
+
 		public String getContent() {
 			return mContent;
 		}
 	}
-	
+
 }
