@@ -7,7 +7,5 @@
         android:minSdkVersion="4"
         android:targetSdkVersion="17" />
 
-    <application android:label="EventBus" >
-    </application>
 
 </manifest>
