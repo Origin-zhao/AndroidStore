@@ -25,7 +25,7 @@ public class SampleActivity extends ListActivity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String[] array = new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i" };
+        String[] array = new String[] { "a", "b", "c", "d", "e", "f", "g", "h", "i","j","k","l","m", "o","p","q","r","s","t","u","v","w","x","y","z"};
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, array));
         
@@ -43,6 +43,7 @@ public class SampleActivity extends ListActivity{
     	PopupMenu menu = new PopupMenu(this);
     	menu.setAnchorView(v);
     	menu.setAdapter(mAdapter);
+    	menu.setForceBelowAnchor(position%2==0);
     	menu.tryShow();
     }
 

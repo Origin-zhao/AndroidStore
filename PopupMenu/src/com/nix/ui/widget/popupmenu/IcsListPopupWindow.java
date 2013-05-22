@@ -41,6 +41,7 @@ public class IcsListPopupWindow {
     private ListAdapter mAdapter;
     private DropDownListView mDropDownList;
 
+    private int mDropDownMaxHeight;
     private int mDropDownHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
     private int mDropDownWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
     private int mDropDownHorizontalOffset;
@@ -84,6 +85,7 @@ public class IcsListPopupWindow {
         mContext = context;
         mPopup = new PopupWindow(context, attrs, defStyleAttr);
         mPopup.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+        mDropDownMaxHeight = mContext.getResources().getDisplayMetrics().heightPixels;
     }
 
     @SuppressLint("NewApi")
@@ -149,13 +151,17 @@ public class IcsListPopupWindow {
             mDropDownWidth = width;
         }
     }
+    
+    public void setMaxHeight(int height){
+    	mDropDownMaxHeight = height;
+    }
 
     public void setOnItemClickListener(AdapterView.OnItemClickListener clickListener) {
         mItemClickListener = clickListener;
     }
 
     public void show() {
-        int height = buildDropDown();
+        int height = Math.min(buildDropDown(), mDropDownMaxHeight);
 
         int widthSpec = 0;
         int heightSpec = 0;

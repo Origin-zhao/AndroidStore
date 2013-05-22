@@ -3,7 +3,9 @@ package com.nix.ui.widget.popupmenu;
 import com.nix.sample.R;
 
 import android.content.Context;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,8 @@ import android.widget.PopupWindow;
 public class PopupMenu implements AdapterView.OnItemClickListener,
 		View.OnKeyListener, ViewTreeObserver.OnGlobalLayoutListener,
 		PopupWindow.OnDismissListener {
+
+	private final static String TAG = PopupMenu.class.getSimpleName();
 	private Context mContext;
 	private BaseAdapter mMenuAdapter;
 
@@ -34,6 +38,8 @@ public class PopupMenu implements AdapterView.OnItemClickListener,
 
 	private int mPopupMaxWidth;
 	private int mScreenWidth;
+	
+	private boolean mIsForceBelowAnchor = false;
 
 	private AdapterView.OnItemClickListener mOnItemClickListener;
 
@@ -100,10 +106,32 @@ public class PopupMenu implements AdapterView.OnItemClickListener,
 
 		mPopup.setContentWidth(Math.min(measureContentWidth(mMenuAdapter),
 				mPopupMaxWidth));
+
+		if(mIsForceBelowAnchor){
+			mPopup.setMaxHeight(measureLeftHight());
+		}
+
 		mPopup.setInputMethodMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
 		mPopup.show();
 		mPopup.getListView().setOnKeyListener(this);
 		return true;
+	}
+	
+	public void setForceBelowAnchor(boolean force){
+		mIsForceBelowAnchor = force;
+	}
+
+	private int measureLeftHight() {
+		int viewBootom = mAnchorView.getBottom();
+		int screenHeight = mContext.getResources().getDisplayMetrics().heightPixels;
+
+		Rect rect = new Rect();
+		mAnchorView.getGlobalVisibleRect(rect);
+		Log.d(TAG, "viewBootom = " + viewBootom);
+		Log.d(TAG, "rect.bottom = " + rect.bottom);
+		Log.d(TAG, "screenHeight  =" + screenHeight);
+		Log.d(TAG, "screenHeight - rect.bottom =" + (screenHeight - rect.bottom));
+		return screenHeight - rect.bottom;
 	}
 
 	private int measureContentWidth(ListAdapter adapter) {
